@@ -10,11 +10,7 @@ RSpec.describe GramsController, type: :controller do
 
   describe "grams#new action" do
     it "should successfully show the new form" do
-      user = User.create(
-          email: '1@1.me',
-          password: 'secretPassword',
-          password_confirmation: 'secretPassword'
-        )
+      user = create(:user)
       sign_in user
 
 
@@ -36,11 +32,7 @@ RSpec.describe GramsController, type: :controller do
     end
 
     it "should successfully create a new record" do
-      user = User.create(
-          email: '1@1.me',
-          password: 'secretPassword',
-          password_confirmation: 'secretPassword'
-        )
+      user = create(:user)
       sign_in user
 
 
@@ -53,11 +45,7 @@ RSpec.describe GramsController, type: :controller do
     end
 
     it "should properly deal with validation errors" do
-      user = User.create(
-          email: '1@1.me',
-          password: 'secretPassword',
-          password_confirmation: 'secretPassword'
-        )
+      user = create(:user)
       sign_in user
 
 
