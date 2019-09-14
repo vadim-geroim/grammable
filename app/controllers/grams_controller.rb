@@ -28,6 +28,7 @@ class GramsController < ApplicationController
     return render_not_found if @gram.blank?
 
     @gram.update_attributes(gram_params)
+
     if @gram.valid?
       redirect_to root_path
     else
@@ -38,6 +39,16 @@ class GramsController < ApplicationController
   def show
     @gram = Gram.find_by_id(params[:id])
     return render_not_found if @gram.blank?
+  end
+
+  def destroy
+    @gram = Gram.find_by_id(params[:id])
+    return render_not_found if @gram.blank?
+    @gram.destroy
+    if @gram.errors.empty?
+      redirect_to root_path
+    end  
+
   end
 
   private

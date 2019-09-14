@@ -3,6 +3,21 @@ require 'rails_helper'
 RSpec.describe GramsController, type: :controller do
   subject { create :gram }
 
+  describe "grams#destroy action" do
+    it "should allow a user to destroy grams" do
+      gram = create :gram
+      delete :destroy, params: { id: gram.id }
+      expect(response).to redirect_to(root_path)
+      gram = Gram.find_by_id(gram.id)
+      expect(gram).to be_nil
+    end
+
+    it "should return 404 error if the gram is not found with the id that is specified" do
+      delete :destroy, params: { id: 0 }
+      expect(response).to have_http_status(:not_found)
+    end
+  end
+
   describe "grams#update action" do
     it "should allow users to successfully update grams" do
         gram = create(:gram, message: 'Initial Value')
@@ -47,7 +62,6 @@ RSpec.describe GramsController, type: :controller do
     it "should return a 404 error if the gram is not found" do 
       get :show, params: { id: 'TACOCAT' }
       expect(response).to have_http_status(:not_found)
-
     end
   end
 
@@ -62,8 +76,6 @@ RSpec.describe GramsController, type: :controller do
     it "should successfully show the new form" do
       user = create(:user)
       sign_in user
-
-
       get :new
       expect(response).to have_http_status(:success)
     end
@@ -84,11 +96,8 @@ RSpec.describe GramsController, type: :controller do
     it "should successfully create a new record" do
       user = create(:user)
       sign_in user
-
-
       post :create, params: { gram: { message: 'Hello!' } }
       expect(response).to redirect_to root_path
-
       gram = Gram.last
       expect(gram.message).to eq("Hello!")
       expect(gram.user).to eq user
@@ -97,8 +106,6 @@ RSpec.describe GramsController, type: :controller do
     it "should properly deal with validation errors" do
       user = create(:user)
       sign_in user
-
-
       post :create, params: { gram: { message: '' } }
       expect(response).to have_http_status(:unprocessable_entity)
       expect(Gram.count).to eq 0
