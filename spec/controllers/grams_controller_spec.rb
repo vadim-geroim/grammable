@@ -148,7 +148,12 @@ RSpec.describe GramsController, type: :controller do
     it "should successfully create a new record" do
       user = create(:user)
       sign_in user
-      post :create, params: { gram: { message: 'Hello!' } }
+      post :create, params: { 
+        gram: { 
+          message: 'Hello!',
+          picture: fixture_file_upload('picture.png', 'image/png')
+           } 
+         }
       expect(response).to redirect_to root_path
       gram = Gram.last
       expect(gram.message).to eq("Hello!")
