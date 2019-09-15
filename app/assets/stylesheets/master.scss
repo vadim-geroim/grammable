@@ -28,6 +28,12 @@ body {
   padding-left: 8px;
 }
 
+.brand a {
+  font-weight: bold;
+  color: #125688;
+  font-size: 25px;
+}
+
 .top-nav .add {
   margin-top: 10px;
 }
@@ -70,6 +76,9 @@ input {
   font-weight: 400;
 }
 
+.form-check-input {
+  margin-left: 2px;
+}
 
 .my-btn {
   background-color: #125688;
@@ -78,4 +87,31 @@ input {
   font-size: 24px;
   color: white;
   margin-top: 10px;
+}
+
+.gram-actions a {
+  font-weight: bold;
+  font-size: 16px;
+  margin-right: 20px;
+  margin-left: auto;
+}
+
+.comments {
+  padding: 20px;
+}
+
+.comment {
+  font-size: 16px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.comment-title {
+  margin-top: 20px;
+}
+
+.comment_handle {
+  color: #125688;
+  font-weight: bold;
+  font-size: 18px;
 }

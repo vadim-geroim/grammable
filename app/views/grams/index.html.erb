@@ -10,6 +10,35 @@
       <p>
          <%= gram.message %>
       </p>
+      <div class="gram-actions float-right">
+        <% if current_user && current_user == gram.user %>
+          <%= link_to 'Edit', edit_gram_path(gram) %>
+          <%= link_to 'Delete', gram_path(gram), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+      </div> 
+      <br class="clear-fix" />
+      <br />
+      <br />
+      <div class="comments">
+        <h3>
+          Comments
+        </h3>
+        <% gram.comments.each do |comment| %>
+          <div class="comment">
+            <span class="comment_handle">
+              <%= comment.user.email %>
+            </span>
+            <%= comment.message %>
+          </div>
+        <% end %>
+        <h4 class="comment-title">
+          Add a comment
+        </h4>
+        <%= simple_form_for @comment, url: gram_comments_path(gram) do |f| %>
+          <%= f.input :message %>
+          <%= f.submit 'Add Comment', class: 'my-btn' %>
+        <% end %>
+      </div> 
     </div>
   <% end %>  
 </div>
