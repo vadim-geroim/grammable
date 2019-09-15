@@ -1,4 +1,10 @@
 FactoryBot.define do
+  factory :comment do
+    message { "test comment" }
+    association :user
+    association :gram
+  end
+
   factory :user do
     sequence(:email) { |n| "dummyEmail#{n}@1.com" }
     password { "secretPassword" }
