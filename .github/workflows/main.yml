@@ -15,4 +15,6 @@ jobs:
         gem install bundler:2.0.2
         sudo apt-get install libpq-dev
         bundle install
+        rake db:create
+        rake db:migrate
         bundle exec rspec
