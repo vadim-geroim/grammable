@@ -13,5 +13,6 @@ jobs:
         ruby-version: 2.6.3
     - run: |
         gem install bundler
+        gem install pg -v '1.1.4'
         bundler install
         bundle exec rspec
